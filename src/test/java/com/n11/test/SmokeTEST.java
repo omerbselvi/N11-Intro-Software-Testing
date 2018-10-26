@@ -1,64 +1,54 @@
 package com.n11.test;
 
+import com.n11.test.pages.HomePage;
+import com.n11.test.pages.LoginPage;
+import com.n11.test.pages.RegisterPage;
+import com.n11.test.pages.SearchResultPage;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static org.junit.Assert.assertTrue;
 
-public class SmokeTEST {
-
+public class SmokeTEST extends BaseTest {
     @Test
-    public void openWebsite() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Downloads/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.n11.com");
+    public void shouldRegisterToWebsite(){
+        HomePage homePage = new HomePage();
+        homePage.clickToRegister(driver);
+
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.register(driver);
+
+        assertTrue(homePage.getUserName(driver).equals("Nameee Surnameee"));
     }
+
     @Test
-    public void loginToWebsite(){
-        System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Downloads/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.n11.com");
-        WebElement signInBtn = driver.findElement(By.cssSelector(".btnSignIn"));
-        signInBtn.click();
-        WebElement emailInput = driver.findElement(By.id("email"));
-        WebElement passwordInput = driver.findElement(By.id("password"));
-        WebElement loginBtn = driver.findElement(By.id("loginButton"));
-
-        emailInput.sendKeys("testforbau@mailinator.com");
-        passwordInput.sendKeys("123");
-        loginBtn.click();
-        WebElement userElement = driver.findElement(By.className("user"));
-
-        Assert.assertTrue(userElement.getText().equals("Test Bau"));
-        //Assert.assertEquals("Test Bau", userElement.getText());
+    public void shouldSearch(){
+        HomePage homePage = new HomePage();
+        homePage.clickToSearchInput(driver, "Red dead redemption 2");
+        SearchResultPage searchResultPage = new SearchResultPage();
+        assertTrue(searchResultPage.getProductName(driver).contains("Red Dead Redemption 2"));
     }
-    @Test
-    public void registerToWebsite(){
-        System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Downloads/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.n11.com");
-        WebElement regBtn = driver.findElement(By.cssSelector(".btnSignUp"));
-        regBtn.click();
-        WebElement nameInput = driver.findElement(By.id("firstName"));
-        WebElement surnameInput = driver.findElement(By.id("lastName"));
-        WebElement registrationEmailInput = driver.findElement(By.id("registrationEmail"));
-        WebElement passwordInput = driver.findElement(By.id("registrationPassword"));
-        WebElement passwordAgainInput = driver.findElement(By.id("passwordAgain"));
-        WebElement genderMaleInput = driver.findElement(By.id("genderMale"));
-        WebElement acceptContractInput = driver.findElement(By.id("acceptContract"));
-        WebElement submitBtn = driver.findElement(By.id("submitButton"));
 
-        nameInput.sendKeys("Name");
-        surnameInput.sendKeys("Surname");
-        registrationEmailInput.sendKeys("testforregister@mailinator.com");
-        passwordInput.sendKeys("123");
-        passwordAgainInput.sendKeys("123");
-        genderMaleInput.click();
-        acceptContractInput.click();
-        submitBtn.click();
-        WebElement userElement = driver.findElement(By.className("user"));
-        Assert.assertTrue(userElement.getText().equals("Name Surname"));
+    @Test
+    public void shouldNotLoginToHomePage(){
+        HomePage homePage = new HomePage();
+        LoginPage loginPage = homePage.clickToLogin(driver);
+        loginPage.login(driver, "asddsa123");
+    }
+
+    @Test
+    public void shouldLogin() {
+
+        HomePage homePage = new HomePage();
+        homePage.clickToLogin(driver);
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(driver);
+
+        assertTrue(homePage.getUserName(driver).equals("Test Bau"));
     }
 }
