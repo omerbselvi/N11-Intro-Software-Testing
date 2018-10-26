@@ -12,6 +12,8 @@ public class HomePage extends BasePage {
 
     By btnSignUp = By.cssSelector(".btnSignUp");
     By btnSignIn = By.cssSelector(".btnSignIn");
+    By searchData = By.id("searchData");
+    By searchBtn = By.cssSelector(".searchBtn");
 
     public LoginPage clickToLogin() {
         clickTo(btnSignIn);
@@ -22,10 +24,8 @@ public class HomePage extends BasePage {
         clickTo(btnSignUp);
     }
     public void clickToSearchInput(String searchValue){
-        WebElement searchInput = driver.findElement(By.id("searchData"));
-        searchInput.sendKeys(searchValue);
-        WebElement searchButton = driver.findElement(By.cssSelector(".searchBtn"));
-        searchButton.click();
+        write(searchData, searchValue);
+        clickTo(searchBtn);
     }
 
     public String getUserName() {

@@ -29,8 +29,8 @@ public class SmokeTEST extends BaseTest {
     public void shouldSearch(){
         HomePage homePage = new HomePage(driver);
         homePage.clickToSearchInput( "Red Dead Redemption 2");
-        SearchResultPage searchResultPage = new SearchResultPage();
-        assertTrue(searchResultPage.getProductName(driver).contains("Red Dead Redemption 2"));
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        assertTrue(searchResultPage.getProductName().contains("Red Dead Redemption 2"));
     }
 
     @Test
