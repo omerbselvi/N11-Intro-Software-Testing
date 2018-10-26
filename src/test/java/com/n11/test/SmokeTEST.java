@@ -16,39 +16,39 @@ import static org.junit.Assert.assertTrue;
 public class SmokeTEST extends BaseTest {
     @Test
     public void shouldRegisterToWebsite(){
-        HomePage homePage = new HomePage();
-        homePage.clickToRegister(driver);
+        HomePage homePage = new HomePage(driver);
+        homePage.clickToRegister();
 
-        RegisterPage registerPage = new RegisterPage();
-        registerPage.register(driver);
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.register();
 
-        assertTrue(homePage.getUserName(driver).equals("Nameee Surnameee"));
+        assertTrue(homePage.getUserName().equals("Nameee Surnameee"));
     }
 
     @Test
     public void shouldSearch(){
-        HomePage homePage = new HomePage();
-        homePage.clickToSearchInput(driver, "Red dead redemption 2");
+        HomePage homePage = new HomePage(driver);
+        homePage.clickToSearchInput( "Red Dead Redemption 2");
         SearchResultPage searchResultPage = new SearchResultPage();
         assertTrue(searchResultPage.getProductName(driver).contains("Red Dead Redemption 2"));
     }
 
     @Test
     public void shouldNotLoginToHomePage(){
-        HomePage homePage = new HomePage();
-        LoginPage loginPage = homePage.clickToLogin(driver);
-        loginPage.login(driver, "asddsa123");
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = homePage.clickToLogin();
+        loginPage.login("asddsa123");
     }
 
     @Test
     public void shouldLogin() {
 
-        HomePage homePage = new HomePage();
-        homePage.clickToLogin(driver);
+        HomePage homePage = new HomePage(driver);
+        homePage.clickToLogin();
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login();
 
-        assertTrue(homePage.getUserName(driver).equals("Test Bau"));
+        assertTrue(homePage.getUserName().equals("Test Bau"));
     }
 }

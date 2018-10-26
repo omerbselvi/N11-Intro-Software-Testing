@@ -4,23 +4,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
+
+    public LoginPage(WebDriver driver){
+        super(driver);
+    }
 
     By email = By.id("email");
     By password = By.id("password");
     By loginButton = By.id("loginButton");
 
-    public void login(WebDriver driver) {
-        login(driver, "123qwe");
+    public void login() {
+        login("123qwe");
     }
 
-    public void login(WebDriver driver, String wrongPass) {
-        driver.findElement(email).sendKeys("testbau@mailinator.com");
-        driver.findElement(password).sendKeys(wrongPass);
-        driver.findElement(loginButton).click();
+    public void login(String wrongPass) {
+        write(email, "testbau@mailinator.com");
+        write(password, wrongPass);
+        clickTo(loginButton);
     }
 
-    public boolean isErrorDisplayed(WebDriver driver, String warning) {
+    public boolean isErrorDisplayed(String warning) {
         return driver.findElement(By.cssSelector("[data-errormessagefor=" + warning + "]")).isDisplayed();
     }
 }

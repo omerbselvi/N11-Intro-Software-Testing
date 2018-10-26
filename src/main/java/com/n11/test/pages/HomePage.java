@@ -4,24 +4,31 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage {
-    public LoginPage clickToLogin(WebDriver driver) {
-        driver.findElement(By.cssSelector(".btnSignIn")).click();
-        return new LoginPage();
+public class HomePage extends BasePage {
+
+    public HomePage(WebDriver driver){
+        super(driver);
     }
 
-    public void clickToRegister(WebDriver driver) {
-        WebElement regBtn = driver.findElement(By.cssSelector(".btnSignUp"));
-        regBtn.click();
+    By btnSignUp = By.cssSelector(".btnSignUp");
+    By btnSignIn = By.cssSelector(".btnSignIn");
+
+    public LoginPage clickToLogin() {
+        clickTo(btnSignIn);
+        return new LoginPage(driver);
     }
-    public void clickToSearchInput(WebDriver driver, String searchValue){
+
+    public void clickToRegister() {
+        clickTo(btnSignUp);
+    }
+    public void clickToSearchInput(String searchValue){
         WebElement searchInput = driver.findElement(By.id("searchData"));
         searchInput.sendKeys(searchValue);
         WebElement searchButton = driver.findElement(By.cssSelector(".searchBtn"));
         searchButton.click();
     }
 
-    public String getUserName(WebDriver driver) {
+    public String getUserName() {
         return driver
                 .findElement(By.className("user"))
                 .getText();
