@@ -3,7 +3,6 @@ package com.n11.test.pages;
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class RegisterPage extends BasePage{
 

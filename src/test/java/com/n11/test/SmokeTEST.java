@@ -4,14 +4,11 @@ import com.n11.test.pages.HomePage;
 import com.n11.test.pages.LoginPage;
 import com.n11.test.pages.RegisterPage;
 import com.n11.test.pages.SearchResultPage;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import static org.junit.Assert.assertTrue;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 public class SmokeTEST extends BaseTest {
     @Test
@@ -22,7 +19,8 @@ public class SmokeTEST extends BaseTest {
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.register();
 
-        assertTrue(homePage.getUserName().equals("Nameee Surnameee"));
+        assertThat("Register Not Succesfull", homePage.getUserName(), equalTo("Nameee Surnameee")); //For better logging
+        //assertTrue(homePage.getUserName().equals("Nameee Surnameee"));
     }
 
     @Test
@@ -30,7 +28,8 @@ public class SmokeTEST extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.clickToSearchInput( "Red Dead Redemption 2");
         SearchResultPage searchResultPage = new SearchResultPage(driver);
-        assertTrue(searchResultPage.getProductName().contains("Red Dead Redemption 2"));
+        assertThat("Search Not Successful", searchResultPage.getProductName(), containsString("Red Dead Redemption 2")); //For better logging
+        //assertTrue(searchResultPage.getProductName().contains("Red Dead Redemption 2"));
     }
 
     @Test
@@ -38,6 +37,7 @@ public class SmokeTEST extends BaseTest {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.clickToLogin();
         loginPage.login("asddsa123");
+        assertThat(true, equalTo(loginPage.isErrorDisplayed("password"))); //For better logging
     }
 
     @Test
@@ -49,6 +49,7 @@ public class SmokeTEST extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login();
 
-        assertTrue(homePage.getUserName().equals("Test Bau"));
+        assertThat("Login Not Successful", homePage.getUserName(), equalTo("Test Bau")); //For better logging
+        //assertTrue(homePage.getUserName().equals("Test Bau"));
     }
 }
