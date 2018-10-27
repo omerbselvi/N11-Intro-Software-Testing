@@ -11,7 +11,7 @@ public class BaseTest {
 
     @Before
     public void startUp(){
-        System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Documents/N11-Intro-Software-Testing/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://www.n11.com");
     }
