@@ -36,7 +36,7 @@ public class SmokeTEST extends BaseTest {
     public void shouldNotLoginToHomePage(){
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.clickToLogin();
-        loginPage.login("asddsa123");
+        loginPage.login("asddsa1234");
         assertThat(true, equalTo(loginPage.isErrorDisplayed("password"))); //For better logging
     }
 
@@ -44,9 +44,7 @@ public class SmokeTEST extends BaseTest {
     public void shouldLogin() {
 
         HomePage homePage = new HomePage(driver);
-        homePage.clickToLogin();
-
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = homePage.clickToLogin();
         loginPage.login();
 
         assertThat("Login Not Successful", homePage.getUserName(), equalTo("Test Bau")); //For better logging
