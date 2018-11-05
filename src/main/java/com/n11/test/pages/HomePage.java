@@ -14,6 +14,7 @@ public class HomePage extends BasePage {
     By searchData = By.id("searchData");
     By searchBtn = By.cssSelector(".searchBtn");
     By user = By.className("user");
+    By firstProduct = By.cssSelector(".catGroup .tabPanel.active li");
 
     public LoginPage clickToLogin() {
         clickTo(btnSignIn);
@@ -32,6 +33,11 @@ public class HomePage extends BasePage {
         return driver
                 .findElement(user)
                 .getText();
+    }
+
+    public ProductPage getFirstProduct() {
+        driver.findElement(firstProduct).click();
+        return new ProductPage(driver);
     }
 
 }

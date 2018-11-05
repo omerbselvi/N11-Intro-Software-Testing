@@ -1,14 +1,12 @@
 package com.n11.test;
 
-import com.n11.test.pages.HomePage;
-import com.n11.test.pages.LoginPage;
-import com.n11.test.pages.RegisterPage;
-import com.n11.test.pages.SearchResultPage;
+import com.n11.test.pages.*;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SmokeTEST extends BaseTest {
 
@@ -57,5 +55,15 @@ public class SmokeTEST extends BaseTest {
         homePage.clickToSearchInput( "Red Dead Redemption 2");
         SearchResultPage searchResultPage = new SearchResultPage(driver);
         assertThat("Search Not Successful", searchResultPage.productNameElement(), equalTo("Red Dead Redemption 2"));
+    }
+
+    @Test
+    public void shouldAddToCart() {
+        HomePage homePage = new HomePage(driver);
+        ProductPage productPage = homePage.getFirstProduct();
+        String productName = productPage.getProductName();
+        productPage.addToCart();
+        MyCartPage myCartPage = productPage.goToCart();
+        assertThat("When a buyer adds a product to cart, ", myCartPage.getProductName(), is(equalTo(productName)));
     }
 }
