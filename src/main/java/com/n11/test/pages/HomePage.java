@@ -13,6 +13,7 @@ public class HomePage extends BasePage {
     By btnSignIn = By.cssSelector(".btnSignIn");
     By searchData = By.id("searchData");
     By searchBtn = By.cssSelector(".searchBtn");
+    By user = By.className("user");
 
     public LoginPage clickToLogin() {
         clickTo(btnSignIn);
@@ -29,7 +30,7 @@ public class HomePage extends BasePage {
 
     public String getUserName() {
         return driver
-                .findElement(By.className("user"))
+                .findElement(user)
                 .getText();
     }
 

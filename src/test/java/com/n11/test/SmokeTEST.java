@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 public class SmokeTEST extends BaseTest {
+
     @Test
     public void shouldRegisterToWebsite(){
         HomePage homePage = new HomePage(driver);
@@ -19,8 +20,7 @@ public class SmokeTEST extends BaseTest {
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.register();
 
-        assertThat("Register Not Succesfull", homePage.getUserName(), equalTo("Nameee Surnameee")); //For better logging
-        //assertTrue(homePage.getUserName().equals("Nameee Surnameee"));
+        assertThat("Register Not Succesfull", homePage.getUserName(), equalTo("Nameee Surnameee"));
     }
 
     @Test
@@ -28,8 +28,7 @@ public class SmokeTEST extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.clickToSearchInput( "Red Dead Redemption 2");
         SearchResultPage searchResultPage = new SearchResultPage(driver);
-        assertThat("Search Not Successful", searchResultPage.getProductName(), containsString("Red Dead Redemption 2")); //For better logging
-        //assertTrue(searchResultPage.getProductName().contains("Red Dead Redemption 2"));
+        assertThat("Search Not Successful", searchResultPage.getProductName(), containsString("Red Dead Redemption 2"));
     }
 
     @Test
@@ -37,7 +36,7 @@ public class SmokeTEST extends BaseTest {
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = homePage.clickToLogin();
         loginPage.login("asddsa1234");
-        assertThat(true, equalTo(loginPage.isErrorDisplayed("password"))); //For better logging
+        assertThat(true, equalTo(loginPage.isErrorDisplayed("password")));
     }
 
     @Test
@@ -47,7 +46,16 @@ public class SmokeTEST extends BaseTest {
         LoginPage loginPage = homePage.clickToLogin();
         loginPage.login();
 
-        assertThat("Login Not Successful", homePage.getUserName(), equalTo("Test Bau")); //For better logging
-        //assertTrue(homePage.getUserName().equals("Test Bau"));
+        assertThat("Login Not Successful", homePage.getUserName(), equalTo("Test Bau"));
+    }
+
+    @Test
+    public void isSearchedElementEqual(){
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = homePage.clickToLogin();
+        loginPage.login();
+        homePage.clickToSearchInput( "Red Dead Redemption 2");
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        assertThat("Search Not Successful", searchResultPage.productNameElement(), equalTo("Red Dead Redemption 2"));
     }
 }
