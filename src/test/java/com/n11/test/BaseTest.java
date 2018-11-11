@@ -13,6 +13,12 @@ public class BaseTest {
     public void startUp(){
         System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Documents/N11-Intro-Software-Testing/chromedriver");
         driver = new ChromeDriver();
+//        ChromeOptions options = new ChromeOptions();
+//        try {
+//            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
         driver.get("https://www.n11.com");
     }
     @After

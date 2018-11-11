@@ -15,7 +15,7 @@ public class RegisterPage extends BasePage{
     By registrationEmail = By.id("registrationEmail");
     By registrationPassword = By.id("registrationPassword");
     By passwordAgain = By.id("passwordAgain");
-    By genderMale = By.id("genderMale");
+    By genderMale = By.cssSelector("[for=genderMale]");
     By acceptContract = By.id("acceptContract");
     By submitButton = By.id("submitButton");
 
@@ -26,7 +26,7 @@ public class RegisterPage extends BasePage{
         write(registrationPassword, "123qwe");
         write(passwordAgain, "123qwe");
         clickTo(genderMale);
-        clickTo(acceptContract);
+        jsClick("acceptContract");
         clickTo(submitButton);
     }
 }

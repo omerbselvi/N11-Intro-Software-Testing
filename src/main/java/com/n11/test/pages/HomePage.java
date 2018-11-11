@@ -36,7 +36,7 @@ public class HomePage extends BasePage {
     }
 
     public ProductPage getFirstProduct() {
-        driver.findElement(firstProduct).click();
+        clickTo(firstProduct);
         return new ProductPage(driver);
     }
 
