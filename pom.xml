@@ -22,6 +22,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.0.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -45,7 +50,7 @@
                 <version>3.0.0-M1</version>
                 <configuration>
                     <parallel>methods</parallel>
-                    <threadCount>10</threadCount>
+                    <threadCount>5</threadCount>
                 </configuration>
             </plugin>
         </plugins>

@@ -32,7 +32,7 @@ public class BasePage {
 
     public void  jsClick(String id){
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("document.getElementById("+id+")");
+        jse.executeScript("document.getElementById('"+id+"').click()");
     }
 
     public void write(By by, String value){

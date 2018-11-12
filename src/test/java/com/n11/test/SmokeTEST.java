@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SmokeTEST extends BaseTest {
+public class SmokeTest extends BaseTest {
 
     @Test
     public void shouldRegisterToWebsite(){
