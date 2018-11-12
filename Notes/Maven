@@ -1,9 +1,0 @@
-mvn compile //compile eder
-
-mvn test //compile edip testi başlatır
-
-mvn package //war yada jar çıkartır
-
-mcn verify 
-
-mvn install
