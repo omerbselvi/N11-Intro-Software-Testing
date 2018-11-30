@@ -1,5 +1,6 @@
 package com.n11.test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +12,9 @@ public class BaseTest {
 
     @Before
     public void startUp(){
-        System.setProperty("webdriver.chrome.driver", "/Users/omerbselvi/Documents/N11-Intro-Software-Testing/chromedriver");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
 //        ChromeOptions options = new ChromeOptions();
 //        try {
 //            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
